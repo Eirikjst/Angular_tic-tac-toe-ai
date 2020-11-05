@@ -1,0 +1,29 @@
+
+<div class="text-center">
+    <h1>
+        Current Player: {{ player }} 
+    </h1>
+    <h2 *ngIf="_winner != null && _winner != 'Draw'">
+        Player {{ _winner }} won the game!
+    </h2>
+    <h2 *ngIf="_winner == 'Draw'">
+        Draw
+    </h2>
+</div>
+
+<app-tic-tac-toe-gameoptions 
+    (gameOption)="newGame($event)"
+    [value]="_gameMode">
+</app-tic-tac-toe-gameoptions>
+
+<main>
+    <app-square
+        *ngFor="let val of _squares; let i = index"
+        [value]="val"
+        (click)="makeMove(i)">
+    </app-square>
+</main>
+
+<div class="text-center">
+    <h2>Player X: {{ _scorePlayerX }}, Player O: {{ _scorePlayerO }}, Draw: {{ _scoreDraw }}</h2>
+</div>
