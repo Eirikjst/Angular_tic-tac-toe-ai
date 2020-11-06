@@ -178,9 +178,9 @@ export class TicTacToeComponent implements OnInit {
     }
 
     /**
-     * Check for winner based on score from 
+     * Check for winner based on score
      * 
-     * @param value Value from evaluate function
+     * @param value from evaluate function
      */
     checkWinner(value: number) {
         if (value == 0){
@@ -202,7 +202,7 @@ export class TicTacToeComponent implements OnInit {
 
     /**
      * Evaluates the state of the board
-     * @param board 
+     * @param board current board state
      * @returns 10 if player 'X' won
      * @returns -10 if player 'O' won
      * @returns 0 if no winner
