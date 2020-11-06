@@ -28,10 +28,16 @@ export class TicTacToeComponent implements OnInit {
         this.newGame(0);
     }
 
-    setGameMode(option: number) {
-        console.log(option);
-    }
-
+    /**
+     * Clears and resets the board for new game
+     * 
+     * idx = 0 for player vs player
+     * 
+     * idx = 1 for player vs simple AI (random move)
+     * 
+     * idx = 2 for player vs smart AI (always wins or draws)
+     * @param idx sets gamemode
+     */
     newGame(idx: number) {
         this._squares = Array(9).fill(null);
         this._winner = null;
@@ -39,10 +45,18 @@ export class TicTacToeComponent implements OnInit {
         this._gameMode = idx;
     }
 
+    /**
+     * GETTER for player
+     * 
+     * @returns this._xIsNext ? 'X' : 'O'
+     */
     get player() {
         return this._xIsNext ? 'X' : 'O';
     }
 
+    /**
+     * @param idx board idx (this._squares)
+     */
     makeMove(idx: number) {
         if (!this._squares[idx] && !this._winner) {
             this._squares.splice(idx, 1, this.player);
@@ -64,7 +78,7 @@ export class TicTacToeComponent implements OnInit {
     }
 
     /**
-     * Makes random move based on empty squares left
+     * Random move
      */
     simpleBotMove() {
         let emptySquares: any[] = this.getEmptySquares();
@@ -86,6 +100,12 @@ export class TicTacToeComponent implements OnInit {
         this.checkWinner(this.evaluate(this._squares));
     }
 
+    /**
+     * Checks all empty squares on the board to find the best possible move
+     * 
+     * @param board current board state
+     * @returns best move out of empty squares
+     */
     findBestMove(board: any[]) {
         let bestVal = 1000;
         let bestMove = -1;
@@ -104,6 +124,13 @@ export class TicTacToeComponent implements OnInit {
         return bestMove;
     }
 
+    /**
+     * Minimax algorithm implantation
+     * 
+     * @param board current board state
+     * @param depth tree depth
+     * @param isMax maximizing player (true) or minimizing player (false)
+     */
     minimax(board: any[], depth: number, isMax: boolean) {
         
         let score = this.evaluate(board);
@@ -135,6 +162,11 @@ export class TicTacToeComponent implements OnInit {
         }
     }
 
+    /**
+     * Checks for empty squres in current board state
+     * 
+     * @returns arr[]
+     */
     getEmptySquares() {
         let temp = [];
         for (let i = 0; i < this._squares.length; i++) {
