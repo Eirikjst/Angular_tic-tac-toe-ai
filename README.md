@@ -9,9 +9,7 @@ Currently has three game modes to choose from:
 2. **Player vs simple AI** AI only does random moves
 3. **Player vs smart AI** AI based on minimax algorithm, always wins or draws
 
-<p align="center">
-  <img src="https://i.imgur.com/KQ2wnxZ.png">
-</p>
+Hosted at [Github Pages](https://eirikjst.github.io/Angular_tic-tac-toe-ai/)
 
 
 ## Development server
